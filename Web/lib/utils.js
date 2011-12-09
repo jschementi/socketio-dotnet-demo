@@ -1,4 +1,4 @@
-﻿exports.bufferToObjects = function (buf) {
+﻿exports.bufferToObjects = function bufferToObjects (buf) {
     var dataStrList = buf.toString('utf8');
     var dataList = dataStrList.split("\\n");
     var retval = [];
