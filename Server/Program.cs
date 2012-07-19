@@ -23,9 +23,15 @@ namespace Server {
 
         #region Starting NodeJS
 
+        static bool IsMono {
+            get {
+                return Type.GetType("Mono.Runtime") != null;
+            }
+        }
+
         static void StartNode(string args, Dictionary<string, string> envVars = null) {
             var riskMonWeb = GetRiskMonWebPath();
-            var nodeExePath = Path.Combine(riskMonWeb, "bin", "node.exe");
+            var nodeExePath = IsMono ? "node" : Path.Combine(riskMonWeb, "bin", "node.exe");
             var psi = new ProcessStartInfo(nodeExePath, args) {
                 WorkingDirectory = riskMonWeb,
                 UseShellExecute = false,

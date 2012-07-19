@@ -63,7 +63,7 @@ namespace Server {
             var returnValue = false;
             try {
                 var localMachineInfo = Dns.GetHostEntry("localhost");
-                var myEndpoint = new IPEndPoint(localMachineInfo.AddressList[1], _serverPort);
+                var myEndpoint = new IPEndPoint(IPAddress.Loopback, _serverPort);
 
                 _serverSocket = new Socket(myEndpoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 _serverSocket.Bind(myEndpoint);
